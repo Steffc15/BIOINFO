@@ -1,5 +1,3 @@
-# Ex 2: detect codon frequencies in all reading frames, sort them,
-# and plot the 10 most frequent codons.
 from collections import Counter
 
 import matplotlib.pyplot as plt
@@ -13,7 +11,6 @@ def reverse_complement(seq):
 
 
 def codon_frequencies(seq):
-    """Count codons in all 6 reading frames (3 forward + 3 reverse complement)."""
     counts = Counter()
     for strand in (seq, reverse_complement(seq)):
         for frame in range(3):
