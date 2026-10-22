@@ -1,3 +1,7 @@
+# Ex 3: send the top 10 codons to an LLM (Claude) and ask for a list
+# of foods that contain the least of the associated amino acids.
+# Uses the Claude Code CLI in headless mode (`claude -p`), so the request runs
+# on the Claude subscription you are logged in with, not on paid API credits.
 import glob
 import os
 import shutil
@@ -34,6 +38,7 @@ def build_prompt(header, top10):
 
 
 def find_claude_cli():
+    """Find the `claude` binary: on PATH, or the one shipped with the VS Code extension."""
     path = shutil.which("claude") or os.environ.get("CLAUDE_CODE_EXECPATH")
     if path:
         return path
@@ -46,6 +51,7 @@ def find_claude_cli():
 
 def ask_claude(prompt):
     env = os.environ.copy()
+    # Without an API key in the environment, the CLI uses the subscription login.
     env.pop("ANTHROPIC_API_KEY", None)
     result = subprocess.run([find_claude_cli(), "-p", prompt],
                             capture_output=True, text=True, env=env)

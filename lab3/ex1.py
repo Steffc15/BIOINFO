@@ -1,3 +1,6 @@
+# Ex 1: download a complete viral genome from NCBI.
+# Chosen genome: Hepatitis delta virus (Hepatitis D), NC_001653.2 - 1682 nt,
+# the smallest known virus that causes disease in humans.
 import urllib.request
 
 ACCESSION = "NC_001653.2"
